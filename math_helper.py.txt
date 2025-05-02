@@ -1,0 +1,16 @@
+import math
+
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+def sine(angle_rad):
+    return math.sin(angle_rad)
+
+def cosine(angle_rad):
+    return math.cos(angle_rad)
+
+def distance(x1, y1, x2, y2):
+    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
