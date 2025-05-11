@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
