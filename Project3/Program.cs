@@ -15,6 +15,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.Urls.Add("http://0.0.0.0:80");
 
 app.UseRouting();
 
