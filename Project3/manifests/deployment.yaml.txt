@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ecommercewebapp
-          image: <your-docker-registry>/ecommercewebapp:21  # Replace with your image tag
+          image: assignmentcr.azurecr.io/ecommercewebapp:new  # Replace with your image tag
           ports:
             - containerPort: 80
           resources:
