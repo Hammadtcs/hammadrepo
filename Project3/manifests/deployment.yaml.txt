@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-deployment
+  labels:
+    app: ecommercewebapp
+spec:
+  replicas: 3  # Adjust this based on the number of replicas you want
+  selector:
+    matchLabels:
+      app: ecommercewebapp
+  template:
+    metadata:
+      labels:
+        app: ecommercewebapp
+    spec:
+      containers:
+        - name: ecommercewebapp
+          image: <your-docker-registry>/ecommercewebapp:21  # Replace with your image tag
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-service
+spec:
+  selector:
+    app: ecommercewebapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
