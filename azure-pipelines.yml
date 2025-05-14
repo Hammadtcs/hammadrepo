@@ -14,12 +14,12 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
+    projects: '**/Assignment4.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '**/Assignment4.csproj'
 
 - script: |
     curl -L https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check.zip -o dependency-check.zip
