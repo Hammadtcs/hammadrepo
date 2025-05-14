@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: UseDotNet@2
@@ -21,6 +21,13 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
 
-- task: WhiteSource@21
+- script: |
+    curl -L https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check.zip -o dependency-check.zip
+    unzip dependency-check.zip -d dependency-check
+    ./dependency-check/bin/dependency-check.sh --project HugleBankApp --scan . --format HTML --out reports
+  displayName: 'Run OWASP Dependency-Check'
+
+- task: PublishBuildArtifacts@1
   inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
+    pathToPublish: 'reports'
+    artifactName: 'DependencyScanReport'
