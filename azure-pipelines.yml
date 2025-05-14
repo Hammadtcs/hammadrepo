@@ -22,10 +22,15 @@ steps:
     projects: '**/Assignment4.csproj'
 
 - script: |
-    curl -L https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check.zip -o dependency-check.zip
+    curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip
     unzip dependency-check.zip -d dependency-check
-    ./dependency-check/bin/dependency-check.sh --project HugleBankApp --scan . --format HTML --out reports
+    chmod +x dependency-check/bin/dependency-check.sh
+  displayName: 'Install OWASP Dependency Check'
+
+- script: |
+    ./dependency-check/bin/dependency-check.sh --project "Assignment4" --scan ./ --format "HTML" --out dependency-report
   displayName: 'Run OWASP Dependency-Check'
+
 
 - task: PublishBuildArtifacts@1
   inputs:
