@@ -24,13 +24,17 @@ steps:
 - script: |
     curl -L -o dependency-check-12.1.0-release.zip https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip
     unzip dependency-check-12.1.0-release.zip -d dependency-check
-    chmod +x dependency-check/bin/dependency-check.sh
+    chmod +x dependency-check/dependency-check/bin/dependency-check.sh
   displayName: 'Install OWASP Dependency Check'
 
 - script: |
-    ./dependency-check/bin/dependency-check.sh --project "Assignment4" --scan ./ --format "HTML" --out dependency-report
+    ./dependency-check/dependency-check/bin/dependency-check.sh --project "Assignment4" --scan ./ --format "HTML" --out reports
   displayName: 'Run OWASP Dependency-Check'
 
+- script: |
+    echo "Listing contents for debugging:"
+    ls -R
+  displayName: 'Debug - List Files'
 
 - task: PublishBuildArtifacts@1
   inputs:
