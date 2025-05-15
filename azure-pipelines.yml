@@ -2,13 +2,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
-
-variables:
-  buildConfiguration: 'Release'
+  vmImage: 'ubuntu-latest'
 
 steps:
-# 1) Restore
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -18,34 +14,29 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
+    projects: '**/Assignment4.csproj'
 
-# 2) Build
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    projects: '**/Assignment4.csproj'
 
-# 3) Publish to a folder
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+- script: |
+    curl -L -o dependency-check-12.1.0-release.zip https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip
+    unzip dependency-check-12.1.0-release.zip -d dependency-check
+    chmod +x dependency-check/dependency-check/bin/dependency-check.sh
+  displayName: 'Install OWASP Dependency Check'
 
-# 4) (Optional) Zip up the published output
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
-    replaceExistingArchive: true
+- script: |
+    ./dependency-check/dependency-check/bin/dependency-check.sh --project "Assignment4" --scan ./ --format "HTML" --out reports
+  displayName: 'Run OWASP Dependency-Check'
 
-# 5) Deploy to Azure Web App
-- task: AzureWebApp@1
+- script: |
+    echo "Listing contents for debugging:"
+    ls -R
+  displayName: 'Debug - List Files'
+
+- task: PublishBuildArtifacts@1
   inputs:
-    azureSubscription: 'MyAzureConnection'         # your ARM service connection
-    appType: 'webApp'
-    appName: 'Flipsois'                # your actual App Service name
-    package: '$(Build.ArtifactStagingDirectory)/app.zip'
+    pathToPublish: 'reports'
+    artifactName: 'DependencyScanReport'
