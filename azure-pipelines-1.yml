@@ -2,7 +2,7 @@ trigger:
 - main
 
 variables:
-  azureSubscription: 'Azure subscription 1' # Replace with your actual connection name
+  azureSubscription: 'assignment4Sub' # Replace with your actual connection name
   webAppName: 'assignment5webapp'               # Replace with your actual Web App name
   dockerRegistryServiceConnection: 'dockerserviceconnection' # Replace with your ACR connection name
   imageRepository: 'assignment5image'
