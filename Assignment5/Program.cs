@@ -10,7 +10,7 @@ string keyVaultUrl = "https://keyvaultassignmnet5.vault.azure.net/";
 var secretClient = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
 
 // Fetch the secret
-KeyVaultSecret secret = secretClient.GetSecret("DbConnectionString");
+KeyVaultSecret secret = secretClient.GetSecret("Secret1");
 string dbConnectionString = secret.Value;
 
 // You can store this in configuration if needed:
