@@ -3,33 +3,12 @@ using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ------------------------
-// 🔐 Connect to Azure Key Vault
-// ------------------------
-string keyVaultUrl = "https://keyvaultassignmnet5.vault.azure.net/";
-var secretClient = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
-
-// Fetch the secret
-KeyVaultSecret secret = secretClient.GetSecret("Secret1");
-string dbConnectionString = secret.Value;
-
-// You can store this in configuration if needed:
-builder.Configuration["ConnectionStrings:DefaultConnection"] = dbConnectionString;
-
-// ------------------------
-// 🧩 Add services
-// ------------------------
+// Add services before building
 builder.Services.AddControllersWithViews();
-
-// Example: if using EF Core, add DbContext like this:
-// builder.Services.AddDbContext<MyDbContext>(options =>
-//     options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
 
 var app = builder.Build();
 
-// ------------------------
-// 🌐 Configure middleware
-// ------------------------
+// 🔐 Access Azure Key Vault after building the app
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -40,11 +19,30 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// 🔐 Fetch secret from Key Vault
+try
+{
+    string keyVaultUrl = "https://keyvaultassignmnet5.vault.azure.net/";
+    var secretClient = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+
+    KeyVaultSecret secret = secretClient.GetSecret("Secret1");
+    string dbConnectionString = secret.Value;
+
+    // You can log or assign it here if needed
+    Console.WriteLine($"Secret Retrieved: {dbConnectionString}");
+
+    // Optional: store in config or use directly
+    // app.Configuration["ConnectionStrings:DefaultConnection"] = dbConnectionString;
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Key Vault access error: {ex.Message}");
+}
 
 app.Run();
