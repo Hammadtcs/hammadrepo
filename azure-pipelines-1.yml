@@ -1,0 +1,30 @@
+trigger:
+- main
+
+variables:
+  azureSubscription: 'assignment4Sub' # Replace with your actual connection name
+  webAppName: 'assignment5webapp'               # Replace with your actual Web App name
+  dockerRegistryServiceConnection: 'dockerserviceconnection' # Replace with your ACR connection name
+  imageRepository: 'assignment5image'
+  containerRegistry: 'newcrassignment5.azurecr.io'       # Replace with your actual ACR login server
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: $(dockerRegistryServiceConnection)
+    repository: $(imageRepository)
+    command: 'buildAndPush'
+    Dockerfile: $(dockerfilePath)
+    tags: |
+      $(Build.BuildId)
+
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: $(azureSubscription)
+    appName: $(webAppName)
+    containers: |
+      $(containerRegistry)/$(imageRepository):$(Build.BuildId)
