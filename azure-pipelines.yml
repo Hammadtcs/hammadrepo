@@ -11,7 +11,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '8.1.00'  # Match your ASP.NET Core version (e.g., 6.x.x, 8.x.x)
+    version: '8.0.00'  # Match your ASP.NET Core version (e.g., 6.x.x, 8.x.x)
 
 - task: DotNetCoreCLI@2
   inputs:
