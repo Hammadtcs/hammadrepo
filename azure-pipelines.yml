@@ -1,42 +1,33 @@
 trigger:
 - main
 
+variables:
+  imageName: 'rotaswebapp'
+
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.0.100'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+- task: DockerInstaller@0
+  displayName: Install Docker
 
-- task: DotNetCoreCLI@2
+- task: Docker@2
+  displayName: 'Login to ACR'
   inputs:
-    command: 'restore'
-    projects: '**/Assignment4.csproj'
+    command: 'login'
+    containerRegistry: 'newcrassignment5'
 
-- task: DotNetCoreCLI@2
+- task: Docker@2
+  displayName: 'Build Docker Image'
   inputs:
     command: 'build'
-    projects: '**/Assignment4.csproj'
+    Dockerfile: '**/Dockerfile'
+    tags: '$(Build.BuildId)'
+    repository: '$(imageName)'
 
-- script: |
-    curl -L -o dependency-check-12.1.0-release.zip https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip
-    unzip dependency-check-12.1.0-release.zip -d dependency-check
-    chmod +x dependency-check/dependency-check/bin/dependency-check.sh
-  displayName: 'Install OWASP Dependency Check'
-
-- script: |
-    ./dependency-check/dependency-check/bin/dependency-check.sh --project "Assignment4" --scan ./ --format "HTML" --out reports
-  displayName: 'Run OWASP Dependency-Check'
-
-- script: |
-    echo "Listing contents for debugging:"
-    ls -R
-  displayName: 'Debug - List Files'
-
-- task: PublishBuildArtifacts@1
+- task: Docker@2
+  displayName: 'Push Image to ACR'
   inputs:
-    pathToPublish: 'reports'
-    artifactName: 'DependencyScanReport'
+    command: 'push'
+    tags: '$(Build.BuildId)'
+    repository: '$(imageName)'
