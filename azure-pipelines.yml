@@ -37,7 +37,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'newcrassignment5'  # Replace with your Azure service connection name
+    azureSubscription: 'satorsc'  # Replace with your Azure service connection name
     appType: 'webApp'
     appName: 'assignment5webapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
