@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|c:\\users\\laptop\\source\\repos\\sqlvmwithiaasextension\\deploy-azureresourcegroup.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|solutionrelative:deploy-azureresourcegroup.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|c:\\users\\laptop\\source\\repos\\sqlvmwithiaasextension\\azuredeploy.parameters.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|solutionrelative:azuredeploy.parameters.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|c:\\users\\laptop\\source\\repos\\sqlvmwithiaasextension\\azuredeploy.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D40E8C22-70A2-4E1F-BB71-1467B6DF16E5}|SqlVmWithIaasExtension.deployproj|solutionrelative:azuredeploy.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Deploy-AzureResourceGroup.ps1",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\Deploy-AzureResourceGroup.ps1",
+              "RelativeDocumentMoniker": "Deploy-AzureResourceGroup.ps1",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\Deploy-AzureResourceGroup.ps1",
+              "RelativeToolTip": "Deploy-AzureResourceGroup.ps1",
+              "ViewState": "AgIAABoAAAAAAAAAAAAmwCMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-20T22:32:26.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "azuredeploy.parameters.json",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\azuredeploy.parameters.json",
+              "RelativeDocumentMoniker": "azuredeploy.parameters.json",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\azuredeploy.parameters.json",
+              "RelativeToolTip": "azuredeploy.parameters.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-20T22:12:37.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "azuredeploy.json",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\azuredeploy.json",
+              "RelativeDocumentMoniker": "azuredeploy.json",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\SqlVmWithIaasExtension\\azuredeploy.json",
+              "RelativeToolTip": "azuredeploy.json",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-20T22:12:02.55Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

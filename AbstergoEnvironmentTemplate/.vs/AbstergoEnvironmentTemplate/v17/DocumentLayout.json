@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|c:\\users\\laptop\\source\\repos\\abstergoenvironmenttemplate\\azuredeploy.parameters.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|solutionrelative:azuredeploy.parameters.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|c:\\users\\laptop\\source\\repos\\abstergoenvironmenttemplate\\azuredeploy.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|solutionrelative:azuredeploy.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|c:\\users\\laptop\\source\\repos\\abstergoenvironmenttemplate\\deploy-azureresourcegroup.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{BD5B184F-2E97-4125-B2CD-F164BB48C4CC}|AbstergoEnvironmentTemplate.deployproj|solutionrelative:deploy-azureresourcegroup.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Deploy-AzureResourceGroup.ps1",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\Deploy-AzureResourceGroup.ps1",
+              "RelativeDocumentMoniker": "Deploy-AzureResourceGroup.ps1",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\Deploy-AzureResourceGroup.ps1",
+              "RelativeToolTip": "Deploy-AzureResourceGroup.ps1",
+              "ViewState": "AgIAABgAAAAAAAAAAAAmwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-18T19:15:16.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "azuredeploy.parameters.json",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\azuredeploy.parameters.json",
+              "RelativeDocumentMoniker": "azuredeploy.parameters.json",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\azuredeploy.parameters.json",
+              "RelativeToolTip": "azuredeploy.parameters.json",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-18T18:49:10.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "azuredeploy.json",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\azuredeploy.json",
+              "RelativeDocumentMoniker": "azuredeploy.json",
+              "ToolTip": "C:\\Users\\LAPTOP\\source\\repos\\AbstergoEnvironmentTemplate\\azuredeploy.json",
+              "RelativeToolTip": "azuredeploy.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-18T18:43:59.405Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_VMsql_name": {
+            "type": "String"
+        },
+        "disks_VMsql_OsDisk_1_731841de74374e47b8ef1ba4c76b6e61_externalid": {
+            "type": "String"
+        },
+        "disks_VMsql_DataDisk_0_externalid": {
+            "type": "String"
+        },
+        "disks_VMsql_DataDisk_1_externalid": {
+            "type": "String"
+        },
+        "networkInterfaces_vmsql120_z1_externalid": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2024-11-01",
+            "name": "[parameters('virtualMachines_VMsql_name')]",
+            "location": "westus3",
+            "zones": [ "1" ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D4s_v3"
+                },
+                "additionalCapabilities": {
+                    "hibernationEnabled": false
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "microsoftsqlserver",
+                        "offer": "sql2022-ws2022",
+                        "sku": "sqldev-gen2",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_VMsql_name'), '_OsDisk_1_731841de74374e47b8ef1ba4c76b6e61')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_VMsql_OsDisk_1_731841de74374e47b8ef1ba4c76b6e61_externalid')]"
+                        },
+                        "deleteOption": "Delete",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_VMsql_name'), '_DataDisk_0')]",
+                            "createOption": "Attach",
+                            "caching": "ReadOnly",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_VMsql_DataDisk_0_externalid')]"
+                            },
+                            "deleteOption": "Detach",
+                            "diskSizeGB": 1024,
+                            "toBeDetached": false
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[concat(parameters('virtualMachines_VMsql_name'), '_DataDisk_1')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_VMsql_DataDisk_1_externalid')]"
+                            },
+                            "deleteOption": "Detach",
+                            "diskSizeGB": 1024,
+                            "toBeDetached": false
+                        }
+                    ],
+                    "diskControllerType": "SCSI"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_VMsql_name')]",
+                    "adminUsername": "firstuser",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true,
+                        "patchSettings": {
+                            "patchMode": "AutomaticByOS",
+                            "assessmentMode": "ImageDefault",
+                            "enableHotpatching": false
+                        }
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "securityProfile": {
+                    "uefiSettings": {
+                        "secureBootEnabled": true,
+                        "vTpmEnabled": true
+                    },
+                    "securityType": "TrustedLaunch"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_vmsql120_z1_externalid')]",
+                            "properties": {
+                                "deleteOption": "Detach"
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+            "apiVersion": "2022-02-01-preview",
+            "name": "[parameters('virtualMachines_VMsql_name')]",
+            "location": "westus3",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_VMsql_name'))]"
+            ],
+            "properties": {
+                "virtualMachineResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_VMsql_name'))]",
+                "sqlManagement": "Full",
+                "sqlServerLicenseType": "PAYG",
+                "autoBackupSettings": {
+                    "enable": false
+                },
+                "autoPatchingSettings": {
+                    "enable": false
+                },
+                "keyVaultCredentialSettings": {
+                    "enable": false
+                },
+                "serverConfigurationsManagementSettings": {
+                    "sqlConnectivityUpdateSettings": {
+                        "connectivityType": "PRIVATE",
+                        "port": 1433,
+                        "sqlAuthUpdateUserName": "sqladmin",
+                        "sqlAuthUpdatePassword": {
+                            "value": "P@ssw0rd1234"
+                        }
+                    },
+                    "sqlWorkloadType": "GENERAL"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_VMsql_name": {
+            "value": "VMsql"
+        },
+        "disks_VMsql_OsDisk_1_731841de74374e47b8ef1ba4c76b6e61_externalid": {
+            "value": "/subscriptions/badb6979-963f-445f-82d3-bf419401058c/resourceGroups/eastusrg/providers/Microsoft.Compute/disks/VMsql_OsDisk_1_731841de74374e47b8ef1ba4c76b6e61"
+        },
+        "disks_VMsql_DataDisk_0_externalid": {
+            "value": "/subscriptions/badb6979-963f-445f-82d3-bf419401058c/resourceGroups/eastusrg/providers/Microsoft.Compute/disks/VMsql_DataDisk_0"
+        },
+        "disks_VMsql_DataDisk_1_externalid": {
+            "value": "/subscriptions/badb6979-963f-445f-82d3-bf419401058c/resourceGroups/eastusrg/providers/Microsoft.Compute/disks/VMsql_DataDisk_1"
+        },
+        "networkInterfaces_vmsql120_z1_externalid": {
+            "value": "/subscriptions/badb6979-963f-445f-82d3-bf419401058c/resourceGroups/eastusrg/providers/Microsoft.Network/networkInterfaces/vmsql120_z1"
+        }
+    }
+}
