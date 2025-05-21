@@ -11,7 +11,7 @@ steps:
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'SONARNEW' # Replace with your service connection name
-    organization: 'hamad12345'       # From SonarCloud
+    organization: 'hamad12345' # From SonarCloud
     scannerMode: 'MSBuild'
     projectKey: 'hammadbinmohd_Assignment4'
     projectName: 'InversionCyclesWebApp'
@@ -19,10 +19,22 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '8.0.100' # Use the version your project targets
+    version: '8.0.100' # Match your project SDK
 
-- script: dotnet build InversionCyclesWebApp/InversionCyclesWebApp.sln --configuration $(buildConfiguration)
+- script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build project'
+
+# Run tests and collect coverage
+- script: dotnet test --configuration $(buildConfiguration) --collect:"XPlat Code Coverage"
+  displayName: 'Run tests and collect code coverage'
+
+# Publish coverage results (Cobertura format)
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'cobertura'
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+    reportDirectory: '$(Agent.TempDirectory)'
+  displayName: 'Publish code coverage to pipeline'
 
 - task: SonarCloudAnalyze@1
 
