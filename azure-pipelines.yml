@@ -1,33 +1,51 @@
 trigger:
-- main
-
-variables:
-  imageName: 'rotaswebapp'
+- main  # Change to your active branch name if needed
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
 
 steps:
-- task: DockerInstaller@0
-  displayName: Install Docker
-
-- task: Docker@2
-  displayName: 'Login to ACR'
+- task: UseDotNet@2
   inputs:
-    command: 'login'
-    containerRegistry: 'newcrassignment5'
+    packageType: 'sdk'
+    version: '8.0.100'  # Match your ASP.NET Core version (e.g., 6.x.x, 8.x.x)
 
-- task: Docker@2
-  displayName: 'Build Docker Image'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/SatorAssignment.csproj'
+
+- task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    Dockerfile: '**/Dockerfile'
-    tags: '$(Build.BuildId)'
-    repository: '$(imageName)'
+    projects: '**/SatorAssignment.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
-- task: Docker@2
-  displayName: 'Push Image to ACR'
+- task: DotNetCoreCLI@2
   inputs:
-    command: 'push'
-    tags: '$(Build.BuildId)'
-    repository: '$(imageName)'
+    command: 'publish'
+    projects: '**/SatorAssignment.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/SatorAssignment.zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'satorsc'  # Replace with your Azure service connection name
+    appType: 'webApp'
+    appName: 'assignment5webapp'
+    package: '$(Build.ArtifactStagingDirectory)/SatorAssignment.zip'
