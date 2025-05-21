@@ -1,5 +1,5 @@
 trigger:
-- main  # Change to your active branch name if needed
+- main
 
 pool:
   vmImage: 'windows-latest'
@@ -8,44 +8,24 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar' # Replace with your service connection name
+    organization: 'hammadbinmohd'       # From SonarCloud
+    scannerMode: 'MSBuild'
+    projectKey: 'your-project-key'
+    projectName: 'InversionCyclesWebApp'
+
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '8.0.100'  # Match your ASP.NET Core version (e.g., 6.x.x, 8.x.x)
+    version: '8.0.100' # Use the version your project targets
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/SatorAssignment.csproj'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build project'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/SatorAssignment.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+- task: SonarCloudAnalyze@1
 
-- task: DotNetCoreCLI@2
+- task: SonarCloudPublish@1
   inputs:
-    command: 'publish'
-    projects: '**/SatorAssignment.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/SatorAssignment.zip'
-    replaceExistingArchive: true
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'satorsc'  # Replace with your Azure service connection name
-    appType: 'webApp'
-    appName: 'assignment5webapp'
-    package: '$(Build.ArtifactStagingDirectory)/SatorAssignment.zip'
+    pollingTimeoutSec: '300'
