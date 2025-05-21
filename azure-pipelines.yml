@@ -10,10 +10,10 @@ variables:
 steps:
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'sonar' # Replace with your service connection name
+    SonarCloud: 'SonarCloudConnection' # Replace with your service connection name
     organization: 'hammadbinmohd'       # From SonarCloud
     scannerMode: 'MSBuild'
-    projectKey: 'your-project-key'
+    projectKey: 'hamad12345'
     projectName: 'InversionCyclesWebApp'
 
 - task: UseDotNet@2
