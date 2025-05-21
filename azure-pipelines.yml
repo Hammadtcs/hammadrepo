@@ -21,7 +21,7 @@ steps:
     packageType: 'sdk'
     version: '8.0.100' # Use the version your project targets
 
-- script: dotnet build --configuration $(buildConfiguration)
+- script: dotnet build InversionCyclesWebApp/InversionCyclesWebApp.sln --configuration $(buildConfiguration)
   displayName: 'Build project'
 
 - task: SonarCloudAnalyze@1
