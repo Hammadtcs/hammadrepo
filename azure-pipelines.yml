@@ -10,7 +10,7 @@ variables:
 steps:
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'SonarCloudConnection' # Replace with your service connection name
+    SonarCloud: 'SONARNEW' # Replace with your service connection name
     organization: 'hammadbinmohd'       # From SonarCloud
     scannerMode: 'MSBuild'
     projectKey: 'hamad12345'
