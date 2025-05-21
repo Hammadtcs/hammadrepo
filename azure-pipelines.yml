@@ -13,7 +13,7 @@ steps:
     SonarCloud: 'SONARNEW' # Replace with your service connection name
     organization: 'hammadbinmohd'       # From SonarCloud
     scannerMode: 'MSBuild'
-    projectKey: 'hamad12345'
+    projectKey: 'hammadbinmohd_Assignment4'
     projectName: 'InversionCyclesWebApp'
 
 - task: UseDotNet@2
